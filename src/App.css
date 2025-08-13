@@ -1,0 +1,44 @@
+.centerItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center,
+}
+
+
+
+@font-face {
+  /* Header */
+  font-family: roboto;
+  src: url("../public/fonts/RobotoCondensed-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  /* toggle */
+  font-family: roboto;
+  src: url("../public/fonts/RobotoCondensed-Thin.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  /* title Of Task */
+  font-family: roboto;
+  src: url("../public/fonts/RobotoCondensed-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  /* description */
+  font-family: roboto;
+  src: url("../public/fonts/RobotoCondensed-ExtraLight.ttf");
+  font-weight: 200;
+}
+
+
+@font-face {
+  /* Header */
+  font-family: roboto;
+  src: url("../public/fonts/RobotoCondensed-SemiBold.ttf");
+  font-weight: 600;
+}
