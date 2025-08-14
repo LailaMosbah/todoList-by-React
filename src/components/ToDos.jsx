@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ToDo from "./ToDo";
 import Grid from "@mui/material/Grid";
 import Add from "@mui/icons-material/Add";
@@ -6,36 +6,10 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import { v4 as uuidv4 } from "uuid";
-
-const initialTodos = [
-  {
-    id: uuidv4(),
-    title: "read a book",
-    details: " hoorakl dafkj asdkf",
-    isComplete: false,
-  },
-  {
-    id: uuidv4(),
-    title: "cooking",
-    details: " hoorakl dafkj asdkf",
-    isComplete: false,
-  },
-  {
-    id: uuidv4(),
-    title: " a project",
-    details: " hoorakl dafkj asdkf",
-    isComplete: false,
-  },
-  {
-    id: uuidv4(),
-    title: " react",
-    details: " hoorakl dafkj asdkf",
-    isComplete: false,
-  },
-];
+import { TodosContext } from "../contexts/TodosContext";
 
 export default function ToDos() {
-  const [todos, setTodos] = useState(initialTodos);
+  const { todos, setTodos } = useContext(TodosContext);
   const [newTodo, setNewTodo] = useState({
     id: "",
     title: "",
@@ -43,20 +17,8 @@ export default function ToDos() {
     isComplete: false,
   });
 
-  function handleCheckBtn(todoId) {
-    // alert(todoId);
-    const ToDosUpdated = todos.map((t) => {
-      if (t.id == todoId) {
-        t.isComplete = !t.isComplete;
-        return t;
-      } else return t;
-    });
-
-    setTodos(ToDosUpdated);
-  }
-
   const todosJsx = todos.map((t) => {
-    return <ToDo key={t.id} todo={t} handleCheck={handleCheckBtn} />;
+    return <ToDo key={t.id} todo={t} />;
   });
 
   function handleAddClicked() {
@@ -67,6 +29,8 @@ export default function ToDos() {
       isComplete: false,
     };
     setTodos([...todos, newTodoInput]);
+    localStorage.setItem("todos", JSON.stringify([...todos, newTodoInput]));
+
     setNewTodo({ id: "", title: "", details: "", isComplete: false });
   }
   return (
