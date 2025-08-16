@@ -1,12 +1,69 @@
-# React + Vite
+# React Todo App ✅
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and responsive Todo application built with **React**, **Material UI**, and **UUID**.  
+Users can add, filter, and complete tasks. The app also persists data in **localStorage**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+- Add new tasks with title and description
+- Mark tasks as complete or incomplete
+- Filter tasks:
+  - All
+  - Todo (non-complete)
+  - Done (complete)
+- Data persistence using `localStorage`
+- Responsive UI built with Material UI
+- Scrollable task list (form and header stay fixed)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies
+- [React](https://react.dev/)
+- [Material UI](https://mui.com/)
+- [UUID](https://www.npmjs.com/package/uuid)
+- LocalStorage API
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/todo-app.git
+cd todo-app
+````
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+The app will be available at [http://localhost:5173](http://localhost:5173) (for Vite)
+or [http://localhost:3000](http://localhost:3000) (for CRA).
+
+### 4. Build for production
+
+```bash
+npm run build
+```
+
+## 📌 Future Improvements
+
+* Add due dates to tasks
+* Dark mode support
+* Sync tasks with a backend (MongoDB / Firebase)
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
