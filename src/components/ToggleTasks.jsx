@@ -3,19 +3,22 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Box } from "@mui/material";
 
-export default function ToggleTasks() {
-  const [alignment, setAlignment] = React.useState("left");
+export default function ToggleTasks({ setFilter }) {
+  const [typeTaskDisplay, setTypeTaskDisplay] = React.useState("all");
 
-  const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
+  const handleTypeToShow = (event) => {
+    const newValue = event.target.value;
+    setTypeTaskDisplay(newValue);
+    console.log(newValue);
+    setFilter(newValue);
   };
 
   return (
     <Box display="flex" justifyContent="center">
       <ToggleButtonGroup
-        value={alignment}
+        value={typeTaskDisplay}
         exclusive
-        onChange={handleAlignment}
+        onChange={(e) => handleTypeToShow(e)}
         sx={{
           bgcolor: "background.paper",
           borderRadius: 2,
@@ -23,8 +26,8 @@ export default function ToggleTasks() {
         }}
       >
         <ToggleButton value="all">All</ToggleButton>
-        <ToggleButton value="done">Done</ToggleButton>
-        <ToggleButton value="todo">ToDo</ToggleButton>
+        <ToggleButton value="non-complete">ToDo</ToggleButton>
+        <ToggleButton value="complete">Done</ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );

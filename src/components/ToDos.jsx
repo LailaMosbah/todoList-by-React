@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ToDo from "./ToDo";
 import Grid from "@mui/material/Grid";
 import Add from "@mui/icons-material/Add";
@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 
 import { v4 as uuidv4 } from "uuid";
 import { TodosContext } from "../contexts/TodosContext";
+import ToggleTasks from "./ToggleTasks";
 
 export default function ToDos() {
   const { todos, setTodos } = useContext(TodosContext);
@@ -16,10 +17,24 @@ export default function ToDos() {
     details: "",
     isComplete: false,
   });
+  const [filter, setFilter] = useState("all"); // <-- NEW
 
-  const todosJsx = todos.map((t) => {
+  const todosToRender = todos.filter((t) => {
+    if (filter === "all") return true;
+    if (filter === "complete") return t.isComplete;
+    if (filter === "non-complete") return !t.isComplete;
+    return true;
+  });
+
+  const todosJsx = todosToRender.map((t) => {
     return <ToDo key={t.id} todo={t} />;
   });
+
+  useEffect(() => {
+    const initialTodos = JSON.parse(localStorage.getItem("todos")) ?? [];
+    setTodos(initialTodos);
+    console.log(initialTodos);
+  }, []);
 
   function handleAddClicked() {
     const newTodoInput = {
@@ -35,7 +50,16 @@ export default function ToDos() {
   }
   return (
     <>
-      <div>{todosJsx}</div>
+      <ToggleTasks setFilter={setFilter} />
+      <div
+        style={{
+          maxHeight: "70vh",
+          overflowY: "auto",
+          paddingRight: "4px",
+        }}
+      >
+        {todosJsx}
+      </div>
       <div>
         <Grid container spacing={2} alignItems="center">
           <Grid size={8}>
@@ -57,6 +81,7 @@ export default function ToDos() {
               sx={{ height: "56px", fontSize: "1.2rem" }}
               variant="contained"
               onClick={handleAddClicked}
+              disabled={newTodo.title.trim().length === 0}
             >
               Add
             </Button>

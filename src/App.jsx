@@ -3,7 +3,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import "./App.css";
 import Header from "./components/Header";
-import ToggleTasks from "./components/ToggleTasks";
 import ToDos from "./components/ToDos";
 import { TodosContext } from "./contexts/TodosContext";
 // import { v4 as uuidv4 } from "uuid";
@@ -14,9 +13,7 @@ const theme = createTheme({
     fontFamily: "roboto",
   },
 });
-const initialTodos =
-  localStorage.getItem("todos") || JSON.parse(localStorage.getItem("todos"));
-console.log(initialTodos);
+
 // // const initialTodos = [
 //   {
 //     id: uuidv4(),
@@ -51,11 +48,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <TodosContext.Provider value={{ todos, setTodos }}>
         <>
-          <Container maxWidth="sm" sx={{ py: 4 }}>
+          <Container maxWidth="sm" sx={{ py: 4, maxHeight: "100vh" }}>
             <Stack spacing={3}>
               <Header />
               <Divider />
-              <ToggleTasks />
               <ToDos />
             </Stack>
           </Container>
